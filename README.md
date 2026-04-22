@@ -5,7 +5,6 @@
 ```mermaid
 erDiagram
 product ||--o{ customer : "has"
-county ||--o{ school : "has"
 customer_product }o--|| customer : "belongs to"
 customer_product }o--|| payment : "belongs to"
 
@@ -37,4 +36,3 @@ customer_product {
     double total_cost
 }
 ```
-
