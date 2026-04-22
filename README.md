@@ -6,13 +6,25 @@
 erDiagram
     institution ||--o{ invoice : places
     invoice ||--o{ invoice_item : contains
-    product ||--o{ invoice_item : "is part of"
+    invoice ||--o{ invoice_adjustment : "has"
     invoice ||--o{ payment : "settled by"
+    product ||--o{ invoice_item : "is part of"
+
+    invoice_adjustment {
+        integer id PK
+        integer invoice_id FK
+        string type "Surcharge, Reconnection, Discount"
+        double amount
+        string description
+    }
 
     institution {
         integer id PK
         string name
+        string contact_name
+        string phone
         string email
+        string address
     }
 
     product {
