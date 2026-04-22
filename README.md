@@ -4,41 +4,44 @@
 
 ```mermaid
 erDiagram
-customer ||--o{ product : "has"
-customer_product }o--|| customer : "belongs to"
-customer_product }o--|| payment : "belongs to"
+    institution ||--o{ invoice : places
+    invoice ||--o{ invoice_item : contains
+    product ||--o{ invoice_item : "is part of"
+    invoice ||--o{ payment : "settled by"
 
-product {
-    integer id
-    string name    
-    string category
-    double cost
-}
+    institution {
+        integer id PK
+        string name
+        string email
+    }
 
-customer {
-    integer id
-    string name
-    string contact_name
-    string phone
-    string email
-}
+    product {
+        integer id PK
+        string name
+        double price
+    }
 
-payment {
-    integer id
-    integer product_id
-    integer customer_id
-    datetime due_date
-    datetime payment_date
-    boolean paid
-    string quantity
-    double total_amount
-}
+    invoice {
+        integer id PK
+        integer customer_id FK
+        datetime order_date
+        double total_amount
+        string status "e.g., Pending, Completed, Overdue"
+    }
 
-customer_product {
-    interger id
-    integer customer_id
-    integer product_id
-    double date
-    double total_cost
-}
+    invoice_item {
+        integer id PK
+        integer order_id FK
+        integer product_id FK
+        integer quantity
+        double unit_price
+    }
+
+    payment {
+        integer id PK
+        integer order_id FK
+        double amount_paid
+        datetime payment_date
+        datetime due_date
+    }
 ```
