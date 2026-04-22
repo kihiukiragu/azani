@@ -27,6 +27,9 @@ payment {
     integer id
     integer product_id
     integer customer_id
+    datetime due_date
+    datetime payment_date
+    boolean paid
     string quantity
     double total_amount
 }
