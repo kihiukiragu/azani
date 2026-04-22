@@ -4,21 +4,16 @@
 
 ```mermaid
 erDiagram
-county ||--o{ student : "has"
+product ||--o{ customer : "has"
 county ||--o{ school : "has"
-school ||--o{ student : "has"
-student ||--o{ student_subject : "has"
-subject ||--o{ student_subject : "has"
-student }o--|| county : "belongs to"
-student }o--|| school : "belongs to"
-school }o--|| county : "belongs to"
 customer_product }o--|| customer : "belongs to"
 customer_product }o--|| payment : "belongs to"
 
 product {
     integer id
-    integer county_id
-    string name
+    string name    
+    string category
+    double cost
 }
 
 customer {
