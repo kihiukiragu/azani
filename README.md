@@ -4,7 +4,7 @@
 
 ```mermaid
 erDiagram
-product ||--o{ customer : "has"
+customer ||--o{ product : "has"
 customer_product }o--|| customer : "belongs to"
 customer_product }o--|| payment : "belongs to"
 
@@ -25,7 +25,10 @@ customer {
 
 payment {
     integer id
-    string name
+    integer product_id
+    integer customer_id
+    string quantity
+    double total_amount
 }
 
 customer_product {
